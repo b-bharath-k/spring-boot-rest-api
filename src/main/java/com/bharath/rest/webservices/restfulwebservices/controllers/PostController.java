@@ -38,7 +38,7 @@ public class PostController {
 	}
 	
 	@PostMapping("/users/{id}/posts")
-	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+	public ResponseEntity<Object> createUserPost(@PathVariable int id, @RequestBody Post post) {
 		Optional<User> userOptional = userRepository.findById(id);
 		if(!userOptional.isPresent()) {
 			throw new UserNotFoundException("User with id " + id + " is not found");
@@ -54,7 +54,7 @@ public class PostController {
 	}
 	
 	@PutMapping("/users/{user_id}/posts/{post_id}")
-	public void updatePost(@PathVariable int user_id, @PathVariable int post_id, @RequestBody Post post) {
+	public void updateUserPost(@PathVariable int user_id, @PathVariable int post_id, @RequestBody Post post) {
 		Optional<User> userOptional = userRepository.findById(user_id);
 		if(!userOptional.isPresent()) {
 			throw new UserNotFoundException("User with id " + user_id + " is not found");
@@ -68,7 +68,7 @@ public class PostController {
 	}
 	
 	@DeleteMapping("/users/{user_id}/posts/{post_id}")
-	public void deletePost(@PathVariable int user_id, @PathVariable int post_id) {
+	public void deleteUserPost(@PathVariable int user_id, @PathVariable int post_id) {
 		Optional<User> user = userRepository.findById(user_id);
 		if(!user.isPresent()) {
 			throw new UserNotFoundException("User with id " + user_id + " is not found");
